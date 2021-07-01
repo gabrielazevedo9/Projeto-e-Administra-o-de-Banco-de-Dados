@@ -10,9 +10,13 @@ CREATE TABLE empregado (
 CREATE TABLE trabalha (
 	cod_empregado INT,
 	cod_companhia INT,
-    PRIMARY KEY(cod_empregado, cod_empregado),
-    FOREIGN KEY (cod_empregado) REFERENCES cod_empregado(empregado),
-    FOREIGN KEY (cod_companhia) REFERENCES cod_companhia(companhia)
+    	PRIMARY KEY(cod_empregado, cod_empregado),
+   	CONSTRAINT fk_empregado FOREIGN KEY (cod_empregado)
+        REFERENCES empregado(cod_empregado)
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+	CONSTRAINT fk_companhia FOREIGN KEY (cod_companhia)
+        REFERENCES companhia(cod_companhia)
+        ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 CREATE TABLE companhia (
@@ -26,9 +30,13 @@ CREATE TABLE companhia (
 CREATE TABLE gerente (
 	cod_empregado INT, 
 	cod_companhia INT,
-    PRIMARY KEY(cod_empregado, cod_empregado),
-    FOREIGN KEY (cod_empregado) REFERENCES cod_empregado(empregado),
-    FOREIGN KEY (cod_companhia) REFERENCES cod_companhia(companhia)
+    	PRIMARY KEY(cod_empregado, cod_empregado),
+    	CONSTRAINT empregado_fk FOREIGN KEY (cod_empregado)
+       	REFERENCES empregado(cod_empregado)
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+  	CONSTRAINT companhia_fk FOREIGN KEY (cod_companhia)
+       	REFERENCES companhia(cod_companhia)
+        ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 INSERT INTO empregado(cod_companhia, nome_empregado, rua, cidade, salario) VALUES 
