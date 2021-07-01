@@ -8,6 +8,7 @@ CREATE TABLE empregado (
 );
 
 CREATE TABLE trabalha (
+	cod_empregado INT,
 	cod_companhia INT,
     PRIMARY KEY(cod_empregado, cod_empregado),
     FOREIGN KEY (cod_empregado) REFERENCES cod_empregado(empregado),
